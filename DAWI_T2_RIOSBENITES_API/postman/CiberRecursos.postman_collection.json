@@ -1,0 +1,109 @@
+{
+  "info": {
+    "name": "CiberRecursos - RIOSBENITES",
+    "_postman_id": "c1b3r-recurs0s-collection",
+    "description": "Colecci\u00f3n de pruebas para la API CiberRecursos (RIOSBENITES)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar equipos",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/equipos"
+      }
+    },
+    {
+      "name": "Crear equipo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"codEquipo\":2001,\"nomEquipo\":\"Laptop HP 245\",\"tipoEquipo\":\"LAPTOP\",\"estado\":\"DISPONIBLE\"}"
+        },
+        "url": "{{baseUrl}}/api/equipos"
+      }
+    },
+    {
+      "name": "Listar reservaciones",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reservaciones"
+      }
+    },
+    {
+      "name": "Obtener reservaci\u00f3n",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reservaciones/1"
+      }
+    },
+    {
+      "name": "Agregar reservaci\u00f3n (OK)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"fecha\":\"2025-08-16\",\"horaInicio\":\"09:00:00\",\"horaFin\":\"10:00:00\",\"usuario\":\"mario\",\"equipo\":{\"codEquipo\":1001}}"
+        },
+        "url": "{{baseUrl}}/api/reservaciones"
+      }
+    },
+    {
+      "name": "Agregar reservaci\u00f3n (Conflicto solapado)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"fecha\":\"2025-08-16\",\"horaInicio\":\"09:30:00\",\"horaFin\":\"10:30:00\",\"usuario\":\"sofia\",\"equipo\":{\"codEquipo\":1001}}"
+        },
+        "url": "{{baseUrl}}/api/reservaciones"
+      }
+    },
+    {
+      "name": "Eliminar reservaci\u00f3n",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/reservaciones/1"
+      }
+    },
+    {
+      "name": "Reporte por usuario",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reservaciones/reporte?usuario=mario"
+      }
+    },
+    {
+      "name": "Reporte por equipo",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reservaciones/reporte?codEquipo=1001"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
